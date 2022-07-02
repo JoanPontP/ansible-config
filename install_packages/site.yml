@@ -1,0 +1,15 @@
+---
+- hosts: "localhost"
+  tasks:
+    - name: "install packages"
+      become: true
+      become_user: "root"
+      apt:
+        state: "present"
+        name:
+          - "git"
+          - "htop"
+          - "curl"
+          - "vim"
+          - "ssh"
+          - "yamllint"
