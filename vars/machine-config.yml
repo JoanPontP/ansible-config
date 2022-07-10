@@ -1,0 +1,7 @@
+---
+execution_host: "192.168.1.40"
+personal_user: "vb-machine"
+personal_folder: "/home/{{ personal_user }}"
+projects_folder: "{{ personal_folder }}/Projects"
+config_folder: "{{ personal_folder }}/.config"
+share_folder: "{{ personal_folder }}/.local/share"

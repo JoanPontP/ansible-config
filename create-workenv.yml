@@ -1,0 +1,17 @@
+---
+- hosts: "{{ execution_host }}"
+  name: "Creating the new work environment"
+  vars_files:
+    - "vars/machine-config.yml"
+  tasks:
+    - name: "Install packages using apt"
+      include_tasks: "install-packages/package-manager.yml"
+
+    - name: "Downloading dotfiles repository to personal directory"
+      include_tasks: "install-packages/download-dotfiles.yml"
+
+    - name: "Install oh my zsh"
+      include_tasks: "install-packages/zsh.yml"
+
+    - name: "Install Docker"
+      include_tasks: "install-packages/docker.yml"

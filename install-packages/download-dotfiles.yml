@@ -1,0 +1,6 @@
+---
+- name: "Downloading repository"
+  ansible.builtin.git:
+    repo: "https://github.com/JoanPontP/dotfiles.git"
+    dest: "{{ personal_folder }}/dotfiles"
+    version: "master"

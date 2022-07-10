@@ -1,0 +1,59 @@
+---
+- name: "Install dependencies"
+  when: ansible_facts['os_family'] == "Debian"
+  become: true
+  become_user: "root"
+  apt:
+    state: "present"
+    update_cache: "yes"
+    name:
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "gnupg-agent"
+      - "software-properties-common"
+
+- name: "Add GPG key"
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: "present"
+
+- name: "Get current release"
+  ansible.builtin.command: "lsb_release -cs"
+  register: "release"
+
+- name: "Add docker repository"
+  apt_repository:
+    repo: >
+      deb https://download.docker.com/linux/ubuntu {{ release.stdout }} stable
+    state: "present"
+
+- name: "Install docker"
+  become: true
+  become_user: "root"
+  apt:
+    state: "present"
+    update-cache: "yes"
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+
+- name: "Verify docker is active"
+  service:
+    name: "docker"
+    state: "started"
+    enabled: "yes"
+
+- name: "Set permission for socket"
+  become: true
+  become_user: "root"
+  ansible.builtin.file:
+    path: "/var/run/docker.sock"
+    mode: "0666"
+
+- name: "Restart docker"
+  become: true
+  become_user: "root"
+  service:
+    name: "docker"
+    state: "restarted"

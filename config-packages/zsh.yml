@@ -1,0 +1,8 @@
+---
+- name: "Copy zshrc to personal folder"
+  ansible.builtin.file:
+    src: "{{ personal_folder }}/dotfiles/zsh/.zshrc"
+    path: "{{ personal_folder }}/.zshrc"
+    state: "link"
+    mode: "0664"
+    force: true

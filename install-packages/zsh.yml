@@ -1,0 +1,33 @@
+---
+- name: "Gather package_facts"
+  ansible.builtin.package_facts:
+    manager: "auto"
+
+- name: "Download and install oh my Zsh"
+  git:
+    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+    dest: "{{ personal_folder }}/.oh-my-zsh"
+    depth: 1
+    version: "master"
+
+- name: "Download and install zsh autosuggestions"
+  git:
+    repo: "https://github.com/zsh-users/zsh-autosuggestions"
+    dest: "{{ personal_folder }}/.zsh/zsh-autosuggestions"
+    version: "master"
+
+- name: "Download and install zsh warhol plugin"
+  git:
+    repo: "https://github.com/unixorn/warhol.plugin.zsh.git"
+    dest: "{{ personal_folder }}/.oh-my-zsh/custom/plugins/warhol"
+    version: "master"
+
+- name: "Copy zshrc to personal folder"
+  include_tasks: "../config-packages/zsh.yml"
+
+- name: "change shell to zsh if is installed"
+  become: true
+  user:
+    name: "{{ personal_user }}"
+    shell: "/bin/zsh"
+  when: "'zsh' in ansible_facts.packages"
