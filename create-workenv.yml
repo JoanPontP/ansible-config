@@ -10,8 +10,35 @@
     - name: "Downloading dotfiles repository to personal directory"
       include_tasks: "install-packages/download-dotfiles.yml"
 
+    - name: "Copy fonts"
+      include_tasks: "install-packages/fonts.yml"
+
+    - name: "Install kitty terminal"
+      include_tasks: "install-packages/kitty.yml"
+
     - name: "Install oh my zsh"
       include_tasks: "install-packages/zsh.yml"
 
     - name: "Install Docker"
       include_tasks: "install-packages/docker.yml"
+
+    - name: "Create link with .vimrc"
+      include_tasks: "config-packages/vim.yml"
+
+    - name: "Create link with .tmux.conf"
+      include_tasks: "config-packages/tmux.yml"
+
+    - name: "Copy and decrypt private and public keys"
+      include_tasks: "config-packages/ssh.yml"
+
+    - name: "Copy and decrypt git config files"
+      include_tasks: "config-packages/git.yml"
+
+    - name: "Create link with i3 config files"
+      include_tasks: "config-packages/i3.yml"
+
+    - name: "Create link with rofi config files"
+      include_tasks: "config-packages/rofi.yml"
+
+    - name: "Create link with kitty config files"
+      include_tasks: "config-packages/kitty.yml"

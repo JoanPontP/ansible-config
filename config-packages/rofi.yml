@@ -1,0 +1,8 @@
+---
+- name: "Copy rofi conf file to config folder"
+  ansible.builtin.file:
+    src: "{{ personal_folder }}/dotfiles/rofi/config.rasi"
+    path: "{{ personal_folder }}/.conf/rofi/"
+    state: "link"
+    mode: "0664"
+    force: true

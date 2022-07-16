@@ -1,0 +1,44 @@
+- name: "install kitty dependencies"
+  become: true
+  become_user: "root"
+  when: ansible_facts['os_family'] == "Debian"
+  apt:
+    update_cache: "yes"
+    state: "latest"
+    name:
+      - "gcc"
+      - "cmake"
+      - "pkg-config"
+      - "libdbus-1-dev"
+      - "libxcursor-dev"
+      - "libxrandr-dev"
+      - "libxi-dev"
+      - "libxinerama-dev"
+      - "libgl1-mesa-dev"
+      - "libxkbcommon-x11-dev"
+      - "libfontconfig-dev"
+      - "libx11-xcb-dev"
+      - "liblcms2-dev"
+      - "libpython3-dev"
+      - "librsync-dev"
+      - "libharfbuzz-dev"
+
+- name: "Download source code"
+  ansible.builtin.git:
+    repo: "https://github.com/kovidgoyal/kitty"
+    dest: "{{ personal_folder }}/source/kitty"
+
+- name: "execute build"
+  ansible.builtin.command:
+    chdir: "{{ personal_folder }}/source/kitty"
+    cmd: "make"
+
+- name: "Copy binary to personal bin folder"
+  become: true
+  become_user: "root"
+  ansible.builtin.file:
+    src: "{{ personal_folder }}/source/kitty/kitty/launcher/kitty"
+    dest: "{{ bin_folder }}/kitty"
+    force: true
+    mode: "0770"
+    state: "link"

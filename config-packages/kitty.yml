@@ -1,0 +1,18 @@
+---
+- name: "Find all files in dotfiles/kitty"
+  find:
+    paths: "{{ personal_folder }}/dotfiles/kitty"
+  register: "find"
+
+- name: "Creates directory if not exists"
+  ansible.builtin.file:
+    path: "{{ config_folder }}/kitty/"
+    state: "directory"
+
+- name: "Create symlinks to .config/kitty"
+  become: false
+  file:
+    src: "{{ item.path }}"
+    path: "{{ config_folder }}/kitty/{{ item.path | basename }}"
+    state: "link"
+  with_items: "{{ find.files }}"

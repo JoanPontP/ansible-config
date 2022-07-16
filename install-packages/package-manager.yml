@@ -8,6 +8,7 @@
     state: "latest"
     name:
       - "git"
+      - "exa"
       - "i3"
       - "tmux"
       - "virtualbox"
@@ -23,3 +24,4 @@
       - "fzf"
       - "ripgrep"
       - "neofetch"
+      - "nodejs"

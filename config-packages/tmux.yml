@@ -1,0 +1,8 @@
+---
+- name: "Copy tmux.conf to personal folder"
+  ansible.builtin.file:
+    src: "{{ personal_folder }}/dotfiles/tmux/.tmux.conf"
+    path: "{{ personal_folder }}/.tmux.conf"
+    state: "link"
+    mode: "0664"
+    force: true
