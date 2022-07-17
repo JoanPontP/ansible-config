@@ -1,16 +1,14 @@
 ---
 - name: "Decrypt and copy private key to .ssh folder"
   ansible.builtin.copy:
-    src: "{{ personal_folder }}/dotfiles/ssh/id_ed25519"
+    src: "../files/ssh/id_ed25519"
     dest: "{{ personal_folder }}/.ssh/id_ed25519"
     mode: "400"
-    remote_src: true
     force: true
 
 - name: "Decrypt and copy public key to .ssh folder"
   ansible.builtin.copy:
-    src: "{{ personal_folder }}/dotfiles/ssh/id_ed25519.pub"
+    src: "../files/ssh/id_ed25519.pub"
     dest: "{{ personal_folder }}/.ssh/id_ed25519.pub"
     mode: "400"
-    remote_src: true
     force: true

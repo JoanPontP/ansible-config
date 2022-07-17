@@ -1,19 +1,17 @@
 ---
 - name: "Decrypt and copy gitconfig file to personal folder"
   ansible.builtin.copy:
-    src: "{{ personal_folder }}/dotfiles/git/.gitconfig"
+    src: "../files/git/.gitconfig"
     dest: "{{ personal_folder }}/.gitconfig"
     mode: "0644"
-    remote_src: true
     decrypt: true
     force: true
 
 - name: "Decrypt and copy git-credentials file to personal folder"
   ansible.builtin.copy:
-    src: "{{ personal_folder }}/dotfiles/git/.git-credentials"
+    src: "../files/git/.git-credentials"
     dest: "{{ personal_folder }}/.git-credentials"
     mode: "0644"
-    remote_src: true
     decrypt: true
     force: true
 
