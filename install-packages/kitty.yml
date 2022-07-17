@@ -42,3 +42,14 @@
     force: true
     mode: "0770"
     state: "link"
+
+- name: "Get kitty current location"
+  ansible.builtin.shell: "which kitty"
+  become: true
+  become_user: "root"
+  register: "kitty_location"
+
+- name: "Make kitty default terminal emulator on the system"
+  ansible.builtin.shell: "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator {{ kitty_location.stdout }} 50"
+  become: true
+  become_user: "root"

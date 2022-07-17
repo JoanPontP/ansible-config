@@ -1,8 +1,13 @@
 ---
+- name: "Creates directory if not exists"
+  ansible.builtin.file:
+    path: "{{ config_folder }}/rofi/"
+    state: "directory"
+
 - name: "Copy rofi conf file to config folder"
   ansible.builtin.file:
     src: "{{ personal_folder }}/dotfiles/rofi/config.rasi"
-    path: "{{ personal_folder }}/.conf/rofi/"
+    path: "{{ config_folder }}/rofi/config.rasi"
     state: "link"
     mode: "0664"
     force: true

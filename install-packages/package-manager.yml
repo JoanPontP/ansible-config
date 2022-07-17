@@ -25,3 +25,14 @@
       - "ripgrep"
       - "neofetch"
       - "nodejs"
+      - "pip"
+
+- name: "Install pip packages"
+  ansible.builtin.pip:
+    state: "latest"
+    name:
+      - "bumblebee-status"
+      - "tk"
+      - "psutil"
+      - "dbus-python"
+    extra_args: "--user"

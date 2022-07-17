@@ -5,40 +5,43 @@
     - "vars/machine-config.yml"
   tasks:
     - name: "Install packages using apt"
-      include_tasks: "install-packages/package-manager.yml"
+      include_tasks: "{{ ansible_install_folder }}/package-manager.yml"
 
     - name: "Downloading dotfiles repository to personal directory"
-      include_tasks: "install-packages/download-dotfiles.yml"
+      include_tasks: "{{ ansible_install_folder }}/download-dotfiles.yml"
 
     - name: "Copy fonts"
-      include_tasks: "install-packages/fonts.yml"
+      include_tasks: "{{ ansible_install_folder }}/fonts.yml"
 
     - name: "Install kitty terminal"
-      include_tasks: "install-packages/kitty.yml"
+      include_tasks: "{{ ansible_install_folder }}/kitty.yml"
 
     - name: "Install oh my zsh"
-      include_tasks: "install-packages/zsh.yml"
+      include_tasks: "{{ ansible_install_folder }}/zsh.yml"
 
     - name: "Install Docker"
-      include_tasks: "install-packages/docker.yml"
+      include_tasks: "{{ ansible_install_folder }}/docker.yml"
 
     - name: "Create link with .vimrc"
-      include_tasks: "config-packages/vim.yml"
+      include_tasks: "{{ ansible_config_folder }}/vim.yml"
 
     - name: "Create link with .tmux.conf"
-      include_tasks: "config-packages/tmux.yml"
+      include_tasks: "{{ ansible_config_folder }}/tmux.yml"
 
     - name: "Copy and decrypt private and public keys"
-      include_tasks: "config-packages/ssh.yml"
+      include_tasks: "{{ ansible_config_folder }}/ssh.yml"
 
     - name: "Copy and decrypt git config files"
-      include_tasks: "config-packages/git.yml"
+      include_tasks: "{{ ansible_config_folder }}/git.yml"
 
     - name: "Create link with i3 config files"
-      include_tasks: "config-packages/i3.yml"
+      include_tasks: "{{ ansible_config_folder }}/i3.yml"
+
+    - name: "Download wallpapers folder"
+      include_tasks: "{{ ansible_install_folder }}/wallpapers.yml"
 
     - name: "Create link with rofi config files"
-      include_tasks: "config-packages/rofi.yml"
+      include_tasks: "{{ ansible_config_folder }}/rofi.yml"
 
     - name: "Create link with kitty config files"
-      include_tasks: "config-packages/kitty.yml"
+      include_tasks: "{{ ansible_config_folder }}/kitty.yml"

@@ -1,8 +1,13 @@
 ---
+- name: "Creates directory if not exists"
+  ansible.builtin.file:
+    path: "{{ config_folder }}/i3/"
+    state: "directory"
+
 - name: "Copy i3 conf file to personal folder"
   ansible.builtin.file:
     src: "{{ personal_folder }}/dotfiles/i3/config"
-    path: "{{ config_folder }}/i3/"
+    path: "{{ config_folder }}/i3/config"
     state: "link"
     mode: "0664"
     force: true

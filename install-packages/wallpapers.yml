@@ -1,0 +1,5 @@
+---
+- name: "Download Wallpapers repository"
+  ansible.builtin.git:
+    repo: "https://github.com/JoanPontP/Wallpapers"
+    dest: "{{ personal_folder }}/Pictures/Wallpapers"
