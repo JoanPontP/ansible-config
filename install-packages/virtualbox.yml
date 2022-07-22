@@ -1,0 +1,35 @@
+---
+- name: "Add repo GPG key"
+  vars:
+  virtualbox_repo_deb_key:
+    - https://www.virtualbox.org/download/oracle_vbox.asc
+    - https://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc
+  when:
+    - "ansible_os_family == 'Debian'"
+    - "ansible_pkg_mgr == 'apt'"
+  become: true
+  apt_key:
+    url: "{{ item }}"
+    state: "present"
+  with_items:
+    - "{{ virtualbox_repo_deb_key }}"
+
+- name: "Add repo VirtualBox for Debian"
+  when:
+    - "ansible_os_family == 'Debian'"
+    - "ansible_pkg_mgr == 'apt'"
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib non-free"
+    state: "present"
+    filename: "virtualbox"
+
+- name: "install packages"
+  become: true
+  become_user: "root"
+  when: ansible_facts['os_family'] == "Debian"
+  apt:
+    update_cache: "yes"
+    state: "latest"
+    name:
+      - "virtualbox"

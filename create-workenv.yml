@@ -13,26 +13,26 @@
     - name: "Copy fonts"
       include_tasks: "{{ ansible_install_folder }}/fonts.yml"
 
-    - name: "Install kitty terminal"
-      include_tasks: "{{ ansible_install_folder }}/kitty.yml"
-
     - name: "Install oh my zsh"
       include_tasks: "{{ ansible_install_folder }}/zsh.yml"
-
-    - name: "Install Docker"
-      include_tasks: "{{ ansible_install_folder }}/docker.yml"
-
-    - name: "Create link with .vimrc"
-      include_tasks: "{{ ansible_config_folder }}/vim.yml"
-
-    - name: "Create link with .tmux.conf"
-      include_tasks: "{{ ansible_config_folder }}/tmux.yml"
 
     - name: "Copy and decrypt private and public keys"
       include_tasks: "{{ ansible_config_folder }}/ssh.yml"
 
     - name: "Copy and decrypt git config files"
       include_tasks: "{{ ansible_config_folder }}/git.yml"
+
+    - name: "Install Docker"
+      include_tasks: "{{ ansible_install_folder }}/docker.yml"
+
+    - name: "Install Virtualbox"
+      include_tasks: "{{ ansible_install_folder }}/virtualbox.yml"
+
+    - name: "Create link with .vimrc"
+      include_tasks: "{{ ansible_config_folder }}/vim.yml"
+
+    - name: "Create link with .tmux.conf"
+      include_tasks: "{{ ansible_config_folder }}/tmux.yml"
 
     - name: "Create link with i3 config files"
       include_tasks: "{{ ansible_config_folder }}/i3.yml"
@@ -43,5 +43,17 @@
     - name: "Create link with rofi config files"
       include_tasks: "{{ ansible_config_folder }}/rofi.yml"
 
+    - name: "Install kitty terminal"
+      include_tasks: "{{ ansible_install_folder }}/kitty.yml"
+
     - name: "Create link with kitty config files"
       include_tasks: "{{ ansible_config_folder }}/kitty.yml"
+
+    - name: "Download and build Neovim"
+      include_tasks: "{{ ansible_install_folder }}/nvim.yml"
+
+    - name: "Configure Neovim"
+      include_tasks: "{{ ansible_config_folder }}/nvim.yml"
+
+    - name: "Install packages using pip"
+      include_tasks: "{{ ansible_install_folder }}/pip-manager.yml"

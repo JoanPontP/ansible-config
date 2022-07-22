@@ -4,3 +4,4 @@
     repo: "https://github.com/JoanPontP/dotfiles.git"
     dest: "{{ personal_folder }}/dotfiles"
     version: "master"
+    force: true

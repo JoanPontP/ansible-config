@@ -1,0 +1,9 @@
+---
+- name: "Downloading repository"
+  ansible.builtin.git:
+    repo: "https://github.com/JoanPontP/nvim-config.git"
+    dest: "{{ personal_folder }}/.config/nvim"
+    version: "master"
+
+- name: "Install Packer"
+  ansible.builtin.shell: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"

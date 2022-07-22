@@ -1,5 +1,5 @@
 ---
-- name: "install packages"
+- name: "install packages apt"
   become: true
   become_user: "root"
   when: ansible_facts['os_family'] == "Debian"
@@ -11,8 +11,6 @@
       - "exa"
       - "i3"
       - "tmux"
-      - "virtualbox"
-      # - "virtualbox-ext-pack"
       - "htop"
       - "curl"
       - "vim"
@@ -26,13 +24,5 @@
       - "neofetch"
       - "nodejs"
       - "pip"
-
-- name: "Install pip packages"
-  ansible.builtin.pip:
-    state: "latest"
-    name:
-      - "bumblebee-status"
-      - "tk"
-      - "psutil"
-      - "dbus-python"
-    extra_args: "--user"
+      - "python3"
+      - "python3-tk"

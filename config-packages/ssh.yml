@@ -12,3 +12,7 @@
     dest: "{{ personal_folder }}/.ssh/id_ed25519.pub"
     mode: "400"
     force: true
+
+- name: "Add github to known hosts"
+  ansible.builtin.command:
+    cmd: "ssh-keyscan -H github.com >> {{ personal_folder }}/.ssh/.known_hosts"

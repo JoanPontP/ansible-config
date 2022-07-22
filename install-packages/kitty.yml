@@ -1,3 +1,4 @@
+---
 - name: "install kitty dependencies"
   become: true
   become_user: "root"
@@ -27,6 +28,7 @@
   ansible.builtin.git:
     repo: "https://github.com/kovidgoyal/kitty"
     dest: "{{ personal_folder }}/source/kitty"
+    force: true
 
 - name: "execute build"
   ansible.builtin.command:
