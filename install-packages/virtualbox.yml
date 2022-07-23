@@ -1,9 +1,9 @@
 ---
 - name: "Add repo GPG key"
   vars:
-  virtualbox_repo_deb_key:
-    - https://www.virtualbox.org/download/oracle_vbox.asc
-    - https://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc
+    virtualbox_repo_deb_key:
+      - https://www.virtualbox.org/download/oracle_vbox.asc
+      - https://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc
   when:
     - "ansible_os_family == 'Debian'"
     - "ansible_pkg_mgr == 'apt'"
