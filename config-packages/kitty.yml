@@ -1,7 +1,7 @@
 ---
 - name: "Find all files in dotfiles/kitty"
   find:
-    paths: "{{ personal_folder }}/dotfiles/kitty"
+    paths: "{{ projects_folder }}/dotfiles/kitty"
   register: "find"
 
 - name: "Creates directory if not exists"

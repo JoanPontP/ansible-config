@@ -1,0 +1,17 @@
+- name: "Remove old go install"
+  become: true
+  ansible.builtin.file:
+    state: "absent"
+    path: "/usr/local/go"
+
+- name: "Download new Go version"
+  become: true
+  ansible.builtin.get_url:
+    url: "https://go.dev/dl/go{{ golang_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/"
+
+- name: "unarchive new golang verison"
+  become: true
+  ansible.builtin.unarchive:
+    src: "/tmp/go{{ golang_version }}.linux-amd64.tar.gz"
+    dest: "/usr/local/"

@@ -1,7 +1,7 @@
 ---
 - name: "Find all files in dotfiles/fonts"
   ansible.builtin.find:
-    paths: "{{ personal_folder }}/dotfiles/fonts"
+    paths: "{{ projects_folder }}/dotfiles/fonts"
   register: "find"
 
 - name: "Creates directory if not exists"

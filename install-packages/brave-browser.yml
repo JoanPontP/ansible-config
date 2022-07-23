@@ -1,0 +1,25 @@
+- name: "Download key"
+  ansible.builtin.get_url:
+    url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    dest: /usr/share/keyrings/brave-browser-archive-keyring.gpg
+
+- name: "Add key"
+  when:
+    - "ansible_os_family == 'Debian'"
+    - "ansible_pkg_mgr == 'apt'"
+  become: true
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
+    state: "present"
+    filename: "brave-browser"
+
+- name: "install packages"
+  become: true
+  become_user: "root"
+  when: ansible_facts['os_family'] == "Debian"
+  apt:
+    update_cache: "yes"
+    state: "latest"
+    name:
+      - "brave-browser"
+---

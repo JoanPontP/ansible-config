@@ -7,4 +7,6 @@
       - "tk"
       - "psutil"
       - "dbus-python"
+      - "iw"
+      - "netifaces"
     extra_args: "--user"
