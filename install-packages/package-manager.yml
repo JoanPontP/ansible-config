@@ -9,6 +9,7 @@
     name:
       - "git"
       - "exa"
+      - "rofi"
       - "i3"
       - "tmux"
       - "htop"

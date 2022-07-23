@@ -32,10 +32,9 @@
       - "docker-compose"
       - "docker-registry"
     state: "latest"
-    update_cache: "true"
+    update_cache: true
 
 - name: "Verify docker is active"
-  become: true
   service:
     name: "docker"
     state: "started"
