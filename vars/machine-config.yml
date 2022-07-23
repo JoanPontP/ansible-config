@@ -1,5 +1,5 @@
 ---
-execution_host: "192.168.1.41"
+execution_host: "localhost"
 personal_user: "joan"
 personal_folder: "/home/{{ personal_user }}"
 projects_folder: "{{ personal_folder }}/Projects"
