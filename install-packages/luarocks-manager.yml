@@ -1,0 +1,10 @@
+---
+- name: "Install luarocks packages"
+  become: true
+  ansible.builtin.command:
+    cmd: "luarocks install {{ item }}"
+  with_items:
+    - "luacheck"
+  tags:
+    - lua
+    - extra_tools

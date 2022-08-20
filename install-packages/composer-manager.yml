@@ -1,0 +1,9 @@
+---
+- name: "Install composer packages"
+  ansible.builtin.command: "composer global require {{ item }}"
+  with_items:
+    - "phpmd/phpmd"
+    - "vimeo/psalm"
+    - "friendsofphp/php-cs-fixer"
+    - "phpunit/phpunit"
+    - "friendsoftwig/twigcs"

@@ -58,6 +58,15 @@
     - name: "Install packages using pip"
       include_tasks: "{{ ansible_install_folder }}/pip-manager.yml"
 
+    - name: "Installing composer"
+      include_tasks: "{{ ansible_install_folder }}/composer.yml"
+
+    - name: "Manage packages with composer"
+      include_tasks: "{{ ansible_install_folder }}/composer-manager.yml"
+
+    - name: "Manage packages with luarocks"
+      include_tasks: "{{ ansible_install_folder }}/luarocks-manager.yml"
+
     - name: "Install Rust"
       include_tasks: "{{ ansible_install_folder }}/rust.yml"
 
