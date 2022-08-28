@@ -7,3 +7,4 @@
     - "friendsofphp/php-cs-fixer"
     - "phpunit/phpunit"
     - "friendsoftwig/twigcs"
+    - "behat/behat"
