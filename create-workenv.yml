@@ -51,6 +51,8 @@
 
     - name: "Download and build Neovim"
       include_tasks: "{{ ansible_install_folder }}/nvim.yml"
+      tags:
+        - nvim
 
     - name: "Configure Neovim"
       include_tasks: "{{ ansible_config_folder }}/nvim.yml"

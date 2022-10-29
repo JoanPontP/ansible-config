@@ -19,29 +19,46 @@
       - "unzip"
       - "curl"
       - "doxygen"
+  tags:
+    - nvim
 
 - name: "Download nvim source code"
   ansible.builtin.git:
     repo: "https://github.com/neovim/neovim"
     dest: "{{ personal_folder }}/source/nvim"
-    version: "stable"
+    version: "{{ nvim_version }}"
     force: true
-
+  tags:
+    - nvim
 
 - name: Create a directory .deps if it does not exist
   ansible.builtin.file:
     path: "{{ personal_folder }}/source/nvim/.deps"
     state: directory
     mode: '0755'
+  tags:
+    - nvim
 
 - name: Create a directory build if it does not exist
   ansible.builtin.file:
     path: "{{ personal_folder }}/source/nvim/build"
     state: directory
     mode: '0755'
+  tags:
+    - nvim
 
 - name: "Execute build"
   become: true
   ansible.builtin.command:
     chdir: "{{ personal_folder }}/source/nvim"
     cmd: "make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=/usr/local install"
+  tags:
+    - nvim
+
+- name: "Copy nvim binary to directory in PATH"
+  ansible.builtin.copy:
+    src: "{{ personal_folder }}/source/nvim/build/bin/nvim"
+    dest: "/usr/local/bin/"
+    force: true
+  tags:
+    - nvim
